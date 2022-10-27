@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.spinner {
+    /* Size */
+    height: 4rem;
+    width: 4rem;
+  
+    /* Create a curve at the top */
+    border: 4px solid #d1d5db;
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: spinner 800ms linear infinite;
+  }
+
+  .container__loading{
+    border-style: solid;
+    border-radius: 50%;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  @keyframes spinner {
+    from {
+      transform: rotate(0deg);
+    }
+  
+    to {
+      transform: rotate(360deg);
+    }
+  }
