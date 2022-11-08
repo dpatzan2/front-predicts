@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.inicio__container__principal{
+    width: 100%;
+}
+
+.principal__create__join__rooms{
+    width: 100%;
+
+}
+.container__rooms__joinned{
+    width: 100%;
+    margin-top: 2em;
+}
+
+.principal__buttons__join__create{
+    width: 100%;
+    height: 8em;
+    margin-top: 2em;
+}
+
+.create__principal__button{
+    background: green;
+    color: #fff;
+    border-style: none;
+}
+
+.join__principal__button{
+    background: blue;
+    color: #fff;
+    border-style: none;
+}
+
+.principal__matchs__recent{
+    margin-top: 2em !important;
+}

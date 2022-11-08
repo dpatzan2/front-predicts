@@ -1,14 +1,29 @@
-import React from 'react'
+import React from "react";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
-import { LoginPage } from './layouts/login/LoginPage';
-import { RegisterPage } from './layouts/register/RegisterPage';
+import { MatchesLis } from "./layouts/dashboard-users/matches/MatchesLis";
+import { PrincipalPageDashboard } from "./layouts/dashboard-users/PrincipalPageDashboard";
+import { StartPageParticipants } from "./layouts/dashboard-users/StartParticipants/StartPageParticipants";
+import { LoginPage } from "./layouts/login/LoginPage";
+import { PositionTablesRoom } from "./layouts/PositionTables/PositionTablesRoom";
+import { MatchesPredicts } from "./layouts/predicts/MatchesPredicts";
+import { RegisterPage } from "./layouts/register/RegisterPage";
+import { PublicRoutes } from "./router/PublicRoutes";
+import { PrivateRoutes } from "./router/PrivateRoutes";
 
 export const LayoutGeneral = () => {
   return (
     <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="registro" element={<RegisterPage />} />
+      <Route path="/*" element={<PublicRoutes />}>
+        <Route index  element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
+      </Route>
+      <Route path="/room/*" element={<PrivateRoutes />}>
+        <Route index element={<PrincipalPageDashboard />} />
+        <Route path="inicio/:idRoom" element={<StartPageParticipants />} />
+        <Route path="matches/:idRoom" element={<MatchesLis />} />
+        <Route path="predicts/:idRoom" element={<MatchesPredicts />} />
+        <Route path="positions/:idRoom" element={<PositionTablesRoom />} />
+      </Route>
     </Routes>
-  )
-}
+  );
+};

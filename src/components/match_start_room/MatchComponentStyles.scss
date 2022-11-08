@@ -1,0 +1,20 @@
+.container__general__matches{
+    width: 100%;
+    border-style: solid;
+    border-radius: 1em;
+}
+
+.container__general__team__match{
+    display: flex;
+    width: 100%;
+}
+
+.container__general__team__match input{
+    width: 20%;
+}
+
+.container__general__name__team{
+    width: 80%;
+    text-align: left;
+    padding-left: 1em;
+}
