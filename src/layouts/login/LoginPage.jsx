@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { LoadingComponent } from "../../components/LoadignComponent/LoadingComponent";
 import { useAuthContext } from "../../context/AuthContexts";
 import { useForm } from "../../hooks/forms/useForm";
-import './LoginPage.scss'
+import styles from'./LoginPage.module.scss'
 
 export const LoginPage = () => {
 
@@ -26,7 +26,8 @@ export const LoginPage = () => {
     e.preventDefault();
     try {
        await login(inputs);
-    } catch (error) {
+    } catch (err) {
+      console.log(err)
       setErr(err.response.data);
     }
   }
@@ -34,12 +35,12 @@ export const LoginPage = () => {
 
   return (
     <>
-      <div className="wrapper fadeInDown">
-        <div id="formContent">
+      <div className={`${styles.wrapper} ${styles.fadeInDown}`}>
+        <div id={styles.formContent}>
           <div className="fadeIn first">
             <img
               src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-              id="icon"
+              id={styles.icon}
               alt="User Icon"
             />
           </div>
@@ -48,7 +49,7 @@ export const LoginPage = () => {
             <input
               type="text"
               id="usuario"
-              className="fadeIn second"
+              className={`${styles.fadeIn} ${styles.second}`}
               name="usuario"
               value={usuario}
               onChange={onInputChange}
@@ -58,19 +59,23 @@ export const LoginPage = () => {
             <input
               type="password"
               id="password"
-              className="fadeIn third"
+              className={`${styles.fadeIn} ${styles.third}`}
               name="password"
               value={password}
               onChange={onInputChange}
               placeholder="password"
             />
-            <input type="submit" className="fadeIn fourth" value="Log In" onClick={ hancleLogin} />
+            <input type="submit" className={`${styles.fadeIn} ${styles.fourth}`} value="Log In" onClick={ hancleLogin} />
           </form>
 
           <div id="formFooter">
-            <a className="underlineHover" href="#">
-              Register
-            </a>
+            <NavLink
+                className={styles.underlineHover}
+                to="/register"
+              >
+                Register
+              </NavLink>
+           
           </div>
         </div>
       </div>

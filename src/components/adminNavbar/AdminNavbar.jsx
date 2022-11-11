@@ -1,7 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-export const SecondNavbarComponent = () => {
+export const AdminNavbar = () => {
   return (
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -16,7 +16,7 @@ export const SecondNavbarComponent = () => {
                 className={({ isActive }) =>
                   `nav-link ${isActive ? "active" : ""}`
                 }
-                to={"/room/matches/" + localStorage.getItem('currentRoom')}
+                to={"/admin/"}
               >
                 Matches
               </NavLink>
@@ -26,21 +26,11 @@ export const SecondNavbarComponent = () => {
                 className={({ isActive }) =>
                   `nav-link ${isActive ? "active" : ""}`
                 }
-                to={"/room/predicts/" + localStorage.getItem('currentRoom')}
+                to={"/admin/teams"}
               >
-                My predicts
+                teams
               </NavLink>
               </li>
-              <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  `nav-link ${isActive ? "active" : ""}`
-                }
-                to={"/room/positions/" + localStorage.getItem('currentRoom')}
-              >
-                Positions table
-              </NavLink>
-            </li>
             </ul>
           </div>
         </div>

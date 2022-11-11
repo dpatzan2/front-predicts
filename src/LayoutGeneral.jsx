@@ -9,6 +9,10 @@ import { MatchesPredicts } from "./layouts/predicts/MatchesPredicts";
 import { RegisterPage } from "./layouts/register/RegisterPage";
 import { PublicRoutes } from "./router/PublicRoutes";
 import { PrivateRoutes } from "./router/PrivateRoutes";
+import { AdminRoutes } from "./router/AdminRoutes";
+import { InitialPageAdmin } from "./layouts/dashboard-admin/InitialPageAdmin";
+import { MatchesAdmin } from "./layouts/dashboard-admin/MatchesAdmin";
+import { TeamsAdmin } from "./layouts/dashboard-admin/TeamsAdmin";
 
 export const LayoutGeneral = () => {
   return (
@@ -23,6 +27,11 @@ export const LayoutGeneral = () => {
         <Route path="matches/:idRoom" element={<MatchesLis />} />
         <Route path="predicts/:idRoom" element={<MatchesPredicts />} />
         <Route path="positions/:idRoom" element={<PositionTablesRoom />} />
+      </Route>
+      <Route path="/admin/*" element={<AdminRoutes />}>
+        <Route index  element={<InitialPageAdmin />}/>
+        <Route path="matches/:idPhase" element={<MatchesAdmin />} />
+        <Route path="teams/" element={<TeamsAdmin />} />
       </Route>
     </Routes>
   );

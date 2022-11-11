@@ -1,8 +1,27 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import "./NavbarStyles.scss";
+import { useAuthContext } from "../../context/AuthContexts";
 
 export const NavbarComponent = () => {
+  const navigate = useNavigate();
+  const { credentials, logout } = useAuthContext();
+  const credentialsUser = JSON.parse(credentials);
+
+  console.log(credentialsUser.rol)
+
+  const handleTables = () => {
+    console.log(localStorage.getItem("currentRoom"));
+    navigate(`/room/positions/${localStorage.getItem("currentRoom")}`);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } catch (err) {
+      
+    }
+  }
+
   return (
     <nav className="navbar navbar-expand-lg bg-light">
       <div className="container-fluid">
@@ -22,15 +41,14 @@ export const NavbarComponent = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li className="nav-item dropdown">
+            <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle"
                 href="#"
                 role="button"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
-              >
-              </a>
+              ></a>
               <ul className="dropdown-menu">
                 <li>
                   <a className="dropdown-item" href="#">
@@ -45,9 +63,9 @@ export const NavbarComponent = () => {
                 <li>
                   <hr className="dropdown-divider" />
                 </li>
-                <li>
+                <li onClick={() => handleLogout()}>
                   <a className="dropdown-item" href="#">
-                    Something else here
+                    Logout
                   </a>
                 </li>
               </ul>
@@ -62,16 +80,20 @@ export const NavbarComponent = () => {
                 Home
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  `nav-link ${isActive ? "active" : ""}`
-                }
-                to="/room/positions/a"
-              >
-                Positions table
-              </NavLink>
-            </li>
+            {credentials.rol !== "ADMIN" ? (
+              <li className="nav-item">
+                <NavLink
+                  className={({ isActive }) =>
+                    `nav-link ${isActive ? "active" : ""}`
+                  }
+                  to="/admin"
+                >
+                  Administration Panel
+                </NavLink>
+              </li>
+            ) : (
+              ""
+            )}
           </ul>
         </div>
       </div>

@@ -37,3 +37,11 @@
 .principal__matchs__recent{
     margin-top: 2em !important;
 }
+
+.cardsLlist {
+    z-index: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }

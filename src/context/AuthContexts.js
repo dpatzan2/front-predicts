@@ -32,7 +32,9 @@ export const AuthContextProvider = ({children}) =>{
         });
     }, [])
 
-    const logout =  useCallback(function(inputs){
+    const logout =  useCallback(function(){
+        localStorage.clear()
+        window.location.replace('');
     }, [])
 
     const value =  useMemo(() => ({

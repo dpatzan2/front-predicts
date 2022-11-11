@@ -1,38 +1,17 @@
 import React from "react";
-import "./RoomsJoined.scss";
+import stylesRoomsJoin from "./RoomsJoined.module.scss";
 
-export const RoomsJoinde = () => {
+export const RoomsJoinde = ({data}) => {
   return (
-    <div className="cards-list">
-      <div className="card 1">
-        <div className="card_image">
+  
+      <div className={`${stylesRoomsJoin.card} ${stylesRoomsJoin.card1}`}>
+        <div className={stylesRoomsJoin.card_image}>
           {" "}
-          <img src="https://static.dezeen.com/uploads/2019/09/2022-world-cup-emblem-411x411.gif" />{" "}
+          <img src="https://ichef.bbci.co.uk/images/ic/1200x675/p0bxkr6q.jpg" />{" "}
         </div>
-        <div className="card_title title-white">
-          <p>Card Title</p>
+        <div className={`${stylesRoomsJoin.card_title} ${stylesRoomsJoin.titleWhite}`}>
+          <p>{data.idRoom.nombreSala}</p>
         </div>
       </div>
-      <div className="card 1">
-        <div className="card_image">
-          {" "}
-          <img src="https://static.dezeen.com/uploads/2019/09/2022-world-cup-emblem-411x411.gif" />{" "}
-        </div>
-        <div className="card_title title-white">
-          <p>Card Title</p>
-        </div>
-      </div>
-      <div className="card 1">
-        <div className="card_image">
-          {" "}
-          <img src="https://static.dezeen.com/uploads/2019/09/2022-world-cup-emblem-411x411.gif" />{" "}
-        </div>
-        <div className="card_title title-white">
-          <p>Card Title</p>
-        </div>
-      </div>
-      
-
-    </div>
   );
 };

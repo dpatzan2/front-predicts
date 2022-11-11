@@ -1,14 +1,14 @@
 import React from 'react'
-import './PrincipalMatches.scss'
+import styleProxMatches from './PrincipalMatches.module.scss'
 
 export const PrincipalPageMatchs = () => {
   return (
     <>
-        <div className="pmatches__container">
+        <div className={styleProxMatches.pmatches__container}>
         <p> TDB vs TDB</p>
         <p>--FECHA--</p>
         </div>
-        <div className="pmatches__container">
+        <div className={styleProxMatches.pmatches__container}>
         <p> TDB vs TDB</p>
         <p>--FECHA--</p>
         </div>
