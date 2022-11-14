@@ -1,45 +1,56 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { AdminNavbar } from "../../components/adminNavbar/AdminNavbar";
+import { AdminCardTeams } from "../../components/adminteams/AdminCardTeams";
+import { LoadingComponent } from "../../components/LoadignComponent/LoadingComponent";
 import { NavbarComponent } from "../../components/navbar/NavbarComponent";
+import { useForm } from "../../hooks/forms/useForm";
+import { useTeams } from "../../hooks/Teams/useTeams";
 import { ModalAddTeamAdmin } from "../../utils/Modals/ModalAddTeamAdmin/ModalAddTeamAdmin";
 import stylesTeams from "./styles.module.scss";
 
 export const TeamsAdmin = () => {
-    const [show, setShow] = useState(false);
-    const [fileList, setFileList] = useState([]);
+  const { name, onInputChange, onResetForm } = useForm({
+    name:'',
+  });
+  
+  const [show, setShow] = useState(false);
+  const [fileList, setFileList] = useState([]);
+
+  const {setTeams,upload, getTeams, isLoadingTeams, dataTeams} = useTeams();
+
+  const handleSetTeam =async (e) => {
+    e.preventDefault();
+    const res = await upload( fileList);
+    const inputs = {
+      name: name,
+      image: res
+    }
+    setTeams(inputs)
+    setShow(false)
+    setFileList([])
+    onResetForm()
+    getTeams()
+  }
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    useEffect(() => {
+      getTeams()
+    }, [])
+    
   return (
     <>
       <NavbarComponent />
       <AdminNavbar />
       <div class="container text-center">
-      <button type="button" class="btn btn-primary" onClick={() => handleShow()}>Primary</button>
+      <button type="button" class="btn btn-primary" onClick={() => handleShow()}>Add team</button>
         <div class="row">
-          <div class="col-md-3 col-12">
-            <div class="card" style={{ width: "18rem;" }}>
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-12">
-            <div class="card" style={{ width: "18rem;" }}>
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-12">
-            <div class="card" style={{ width: "18rem;" }}>
-              <img src="..." class="card-img-top" alt="..." />
-              <div class="card-body">
-              </div>
-            </div>
-          </div>
+          {isLoadingTeams ? (<LoadingComponent />) : (dataTeams.length === 0 ? <h1>teams not found</h1>: dataTeams.map((data) => (<AdminCardTeams data={data}/>)) )}
         </div>
       </div>
-      <ModalAddTeamAdmin show={show} handleClose={handleClose} fileList={fileList} />
+      <ModalAddTeamAdmin show={show} handleClose={handleClose} fileList={fileList} name={name} onInputChange={onInputChange} setFileList={setFileList} handleSetTeam={handleSetTeam} />
     </>
   );
 };

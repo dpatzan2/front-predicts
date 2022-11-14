@@ -6,7 +6,7 @@ import { Button as ButtonAt, Upload } from "antd";
 import stylesModalPredict from "../ModalPredict/ModalPredicts.model.scss";
 import "antd/dist/antd.css";
 
-export const ModalEditMatch = ({ show, handleClose, fileList }) => {
+export const ModalEditMatch = ({ show, handleClose,date, team1, team2, onInputChange, dataTeams,isLoadingTeams }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -16,23 +16,46 @@ export const ModalEditMatch = ({ show, handleClose, fileList }) => {
         <div className={stylesModalPredict.containerGeneralEnterMatches}>
           <div className={stylesModalPredict.containerMiddlePredicts}>
             <p>TEAM 1</p>
-            <select class="form-select" aria-label="Default select example">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="team1"
+              name="team1"
+              onChange={onInputChange}
+            >
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+            {isLoadingTeams
+                ? ""
+                : dataTeams.map((data) => (
+                    <option value={data._id}>{data.name}</option>
+                  ))}
             </select>
-
+            <p>GOALS</p>
+            <input type="text" id="fname" name="fname" />
             <br />
           </div>
           <div className={stylesModalPredict.containerMiddlePredicts}>
             <p>TEAM 1</p>
-            <select class="form-select" aria-label="Default select example">
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="team2"
+              name="team2"
+              onChange={onInputChange}
+            >
               <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
+              {isLoadingTeams
+                ? ""
+                : dataTeams.map((data) => (
+                    <option value={data._id}>{data.name}</option>
+                  ))}
             </select>
+            <p>GOALS</p>
+            <input type="text" id="fname" name="fname" />
+          </div>
+          <div className={stylesModalPredict.containerMiddlePredicts}>
+            <p>Match Day</p>
+          <input type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" id="date" name="date" value={date} onChange={onInputChange} />
           </div>
         </div>
       </Modal.Body>

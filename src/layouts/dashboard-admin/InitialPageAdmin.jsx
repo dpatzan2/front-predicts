@@ -22,7 +22,6 @@ export const InitialPageAdmin = () => {
 
   useEffect(() => {
     getPhases();
-    getPoinst(idRoom);
   }, []);
 
   return (
