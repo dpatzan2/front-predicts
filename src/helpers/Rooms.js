@@ -21,3 +21,10 @@ export const GetPoints = async (idRoom) => {
     console.log(url)
     return axios.get(url, {withCredentials: true})
 }
+
+export const GetDataRoom = async (id) => {
+    const url = `http://localhost:3000/api/getDataRoom/${id}`
+    console.log(url)
+    return axios.get(url, {withCredentials: true})
+    
+}

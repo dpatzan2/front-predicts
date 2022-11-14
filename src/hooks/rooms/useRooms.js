@@ -1,6 +1,6 @@
 import { useState } from "react"
 import Swal from "sweetalert2";
-import { CreateRoom, GetPoints, GetRooms, JoinRoom } from "../../helpers/Rooms";
+import { CreateRoom, GetDataRoom, GetPoints, GetRooms, JoinRoom } from "../../helpers/Rooms";
 import Cookies from 'universal-cookie';
 
 
@@ -9,13 +9,13 @@ import Cookies from 'universal-cookie';
 export const useRooms = () => {
     const [dataRooms, setDataRooms] = useState([]);
     const [errorRooms, setErrorRooms] = useState(null);
+    const [dataRoomSelect, setDataRoomSelect] = useState([])
     const [isLoadingRooms, setIsLoadingRooms] = useState(true);
     const [isLoadingPoints, setIsLoadingPoints] = useState(true)
     const [dataPoints, setDataPoints] = useState(null)
     const cookies = new Cookies();
 
     const joinRoom = async (roomId) => {
-        console.log(cookies.get('accessToken'));
         try {
             const data = await JoinRoom(roomId);
             console.log(data.data.message)
@@ -38,9 +38,9 @@ export const useRooms = () => {
     const getRooms =  async () => {
         try {
             const data = await GetRooms();
-            console.log(data)
             setIsLoadingRooms(false)
             setDataRooms(data.data.participaciones)
+            
         } catch (err) {
             console.log(err)
             Swal.fire(
@@ -54,7 +54,6 @@ export const useRooms = () => {
     const createRoom = async (inputs) => {
         try {
             const data = await CreateRoom(inputs);
-            console.log(data)
             getRooms()
         } catch (err) {
             console.log(err)
@@ -66,7 +65,9 @@ export const useRooms = () => {
             const data = await GetPoints(idRoom);
             setIsLoadingPoints(false)
             setDataPoints(data.data.puntos)
-            console.log(data)
+            const dataRomm = await GetDataRoom(idRoom)
+            console.log(dataRomm.data.participaciones.dueñoSala.usuario)
+            setDataRoomSelect(dataRomm.data.participaciones)
         } catch (err) {
             console.log(err)
         }
@@ -80,6 +81,7 @@ export const useRooms = () => {
         joinRoom,
         getRooms,
         createRoom,
+        dataRoomSelect,
         getPoinst,
         isLoadingPoints,
         dataPoints

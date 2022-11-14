@@ -53,6 +53,7 @@ export const PrincipalPageDashboard = () => {
   
   }, [])
   
+  console.log(dataRooms ?? '')
 
   return (
     
