@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { GetTeams, SetFile, SetTeams } from '../../helpers/Admin/Teams'
@@ -19,12 +20,12 @@ export const useTeams = () => {
     };
 
     const setTeams = async (inputs) => {
-      try {
-        const data = await SetTeams(inputs);
-        console.log(data)
-      } catch (err) {
-        
-      }
+      console.log(inputs)
+       axios.post(`http://localhost:3001/api/addTeam`, inputs, {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}}).then((res) => {
+        console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        });
     }
 
     const getTeams = async () => {

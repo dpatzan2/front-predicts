@@ -2,6 +2,7 @@ import { useState } from "react"
 import Swal from "sweetalert2";
 import { CreateRoom, GetDataRoom, GetPoints, GetRooms, JoinRoom } from "../../helpers/Rooms";
 import Cookies from 'universal-cookie';
+import axios from "axios";
 
 
 
@@ -16,23 +17,20 @@ export const useRooms = () => {
     const cookies = new Cookies();
 
     const joinRoom = async (roomId) => {
-        try {
-            const data = await JoinRoom(roomId);
-            console.log(data.data.message)
+        await axios.post(`https://drab-puce-puffer-sari.cyclic.app/api/joinRoom/${roomId}`, roomId, {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}}).then((res) => {
             Swal.fire(
                 'Good job!',
-                data.data.message,
+                res.data.message,
                 'success'
               )
-              getRooms();
-        } catch (err) {
-            console.log(err)
+              getRooms()
+        }).catch((err) => {
             Swal.fire(
                 'UPS!',
                 err.response.data.message,
                 'error'
               )
-        }
+        });
     }
 
     const getRooms =  async () => {
@@ -52,12 +50,15 @@ export const useRooms = () => {
     }
 
     const createRoom = async (inputs) => {
-        try {
-            const data = await CreateRoom(inputs);
+        await axios.post(`https://drab-puce-puffer-sari.cyclic.app/api/crearRoom`, inputs, {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}}).then((res) => {
             getRooms()
-        } catch (err) {
-            console.log(err)
-        }
+        }).catch((err) => {
+            Swal.fire(
+                'UPS!',
+                err.response.data.message,
+                'error'
+              )
+        });
     }
 
     const getPoinst = async (idRoom) => {

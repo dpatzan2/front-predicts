@@ -33,7 +33,11 @@ export const PrincipalPageDashboard = () => {
 
   const handleCreateRoom = (e) => {
     e.preventDefault();
-    createRoom({nameRoom:nameRoom});
+    const inputs = {
+      nameRoom:nameRoom
+    }
+    console.log(inputs)
+    createRoom(inputs);
     setShow(false)
   }
 

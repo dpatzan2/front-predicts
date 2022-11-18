@@ -50,7 +50,7 @@ export const RegisterPage = () => {
               value={password}
               onChange={onInputChange}
             />
-            <button type="button" class="btn btn-primary"  onClick={() => handleRegister()} >Primary</button>
+            <button type="button" class="btn btn-primary"  onClick={() => handleRegister()} >Register</button>
 
           </form>
 

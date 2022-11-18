@@ -2,29 +2,31 @@ import axios from "axios"
 import { makeRequest } from "../axios/axios"
 
 export const JoinRoom = async (roomId) => {
-    return makeRequest.post(`/joinRoom/${roomId}`)
+    const url = `https://drab-puce-puffer-sari.cyclic.app/api/joinRoom/${roomId}`
+    return axios.post(url,  {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}})
 }
 
 export const GetRooms = async () => {
-    const url = `http://localhost:3000/api/getRooms`
-    return axios.get(url, {withCredentials: true})
+    const url = `https://drab-puce-puffer-sari.cyclic.app/api/getRooms`
+    return axios.get(url,  {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}})
 }
 
 export const CreateRoom = async (inputs) => {
-    const url = `http://localhost:3000/api/crearRoom`
-    return axios.post(url, inputs, {withCredentials: true})
+    console.log(inputs, 'inputs')
+    const url = `https://drab-puce-puffer-sari.cyclic.app/api/crearRoom`
+    return axios.post(`https://drab-puce-puffer-sari.cyclic.app/api/crearRoom`, inputs,  {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}})
     // return makeRequest.post(`/crearRoom`)
 }
 
 export const GetPoints = async (idRoom) => {
-    const url = `http://localhost:3000/api/getPoints/${idRoom}`
+    const url = `https://drab-puce-puffer-sari.cyclic.app/api/getPoints/${idRoom}`
     console.log(url)
-    return axios.get(url, {withCredentials: true})
+    return axios.get(url,  {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}})
 }
 
 export const GetDataRoom = async (id) => {
-    const url = `http://localhost:3000/api/getDataRoom/${id}`
+    const url = `https://drab-puce-puffer-sari.cyclic.app/api/getDataRoom/${id}`
     console.log(url)
-    return axios.get(url, {withCredentials: true})
+    return axios.get(url,   {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}})
     
 }

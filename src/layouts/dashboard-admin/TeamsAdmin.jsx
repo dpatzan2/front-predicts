@@ -22,6 +22,7 @@ export const TeamsAdmin = () => {
   const handleSetTeam =async (e) => {
     e.preventDefault();
     const res = await upload( fileList);
+    console.log(res)
     const inputs = {
       name: name,
       image: res
@@ -29,7 +30,6 @@ export const TeamsAdmin = () => {
     setTeams(inputs)
     setShow(false)
     setFileList([])
-    onResetForm()
     getTeams()
   }
 

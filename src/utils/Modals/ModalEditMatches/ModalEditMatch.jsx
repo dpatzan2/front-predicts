@@ -6,7 +6,8 @@ import { Button as ButtonAt, Upload } from "antd";
 import stylesModalPredict from "../ModalPredict/ModalPredicts.model.scss";
 import "antd/dist/antd.css";
 
-export const ModalEditMatch = ({ show, handleClose,date, team1, team2, onInputChange, dataTeams,isLoadingTeams }) => {
+export const ModalEditMatch = ({ show, handleClose,goalTeam1,goalTeam2,onInputChange, dataEdit,putMatchFinal }) => {
+  console.log(dataEdit)
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -15,47 +16,15 @@ export const ModalEditMatch = ({ show, handleClose,date, team1, team2, onInputCh
       <Modal.Body>
         <div className={stylesModalPredict.containerGeneralEnterMatches}>
           <div className={stylesModalPredict.containerMiddlePredicts}>
-            <p>TEAM 1</p>
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              id="team1"
-              name="team1"
-              onChange={onInputChange}
-            >
-              <option selected>Open this select menu</option>
-            {isLoadingTeams
-                ? ""
-                : dataTeams.map((data) => (
-                    <option value={data._id}>{data.name}</option>
-                  ))}
-            </select>
+            <p>{!dataEdit ? '' : dataEdit.idTeam1.name}</p>
             <p>GOALS</p>
-            <input type="text" id="fname" name="fname" />
+            <input type="text" id="goalTeam1" name="goalTeam1" value={goalTeam1} onChange={onInputChange} />
             <br />
           </div>
           <div className={stylesModalPredict.containerMiddlePredicts}>
-            <p>TEAM 1</p>
-            <select
-              class="form-select"
-              aria-label="Default select example"
-              id="team2"
-              name="team2"
-              onChange={onInputChange}
-            >
-              <option selected>Open this select menu</option>
-              {isLoadingTeams
-                ? ""
-                : dataTeams.map((data) => (
-                    <option value={data._id}>{data.name}</option>
-                  ))}
-            </select>
+          <p>{!dataEdit ? '' : dataEdit.idTeam2.name}</p>
             <p>GOALS</p>
-            <input type="text" id="fname" name="fname" />
-          </div>
-          <div className={stylesModalPredict.containerMiddlePredicts}>
-            <p>Match Day</p>
-          <input type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" id="date" name="date" value={date} onChange={onInputChange} />
+            <input type="text" id="goalTeam2" name="goalTeam2" value={goalTeam2} onChange={onInputChange} />
           </div>
         </div>
       </Modal.Body>
@@ -63,7 +32,7 @@ export const ModalEditMatch = ({ show, handleClose,date, team1, team2, onInputCh
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleClose}>
+        <Button variant="primary" onClick={() => putMatchFinal(dataEdit._id)}>
           Save Changes
         </Button>
       </Modal.Footer>

@@ -15,7 +15,8 @@ export const ModalAddMatch = ({
   dataTeams,
   onInputChange,
   isLoadingTeams,
-  date
+  date,
+  handleCreateMatch
 }) => {
   console.log(dataTeams);
   return (
@@ -70,7 +71,7 @@ export const ModalAddMatch = ({
           </div>
           <div className={stylesModalPredict.containerMiddlePredicts}>
             <p>Match Day</p>
-          <input type="datetime-local" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}" id="date" name="date" value={date} onChange={onInputChange} />
+          <input type="datetime-local" id="date" name="date" value={date} onChange={onInputChange} />
           </div>
         </div>
       </Modal.Body>
@@ -78,7 +79,7 @@ export const ModalAddMatch = ({
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleClose}>
+        <Button variant="primary" onClick={() => handleCreateMatch()}>
           Save Changes
         </Button>
       </Modal.Footer>
