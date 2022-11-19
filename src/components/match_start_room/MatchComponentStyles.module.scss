@@ -1,26 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@500&display=swap');
+
+
 .container__general__matches{
     width: 100%;
-    border-style: solid;
-    border-radius: 1em;
+    border: 1px solid #692146;
+    border-radius: 10px 10px 0px 0px;
+    background-color: #EDEEE4;
 }
 
 .container__general__team__match{
     display: flex;
     width: 100%;
-}
-
-.container__general__team__match input{
-    width: 20%;
+    background-color: #EDEEE4;
+    margin: 1rem 0rem;
 }
 
 .container__general__name__team{
     width: 80%;
     text-align: left;
     padding-left: 1em;
+
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    color: #692146;
+    font-size: 1rem;
+
 }
 
 .container__general__name__team img {
     width: 30px;
     height: 20px;
     padding-right: 0.5em;
+}
+
+
+.container__general__team__time{
+    margin-top: 1em;
+    background-color: #8B1638;
+    color: #fff;
+}
+
+.container__general__team__time__text{
+    background-color: #692146;;
+    color: #fff;
+    padding: 2px 0px;
+}
+
+
+.container__general__ojito{
+    background-color: #692146;
+    border: 1px solid #692146;
+    border-radius: 10px;
+    margin-bottom: 1em;
 }
