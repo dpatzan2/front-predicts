@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useMemo, useState } from "react
 import PropTypes from 'prop-types'
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const CREDENTIALS = 'Autenticated'
 const USER_CREDENTIALS = 'USER_CREDENTIALS';
@@ -30,8 +31,11 @@ export const AuthContextProvider = ({children}) =>{
             window.location.replace('');
        
         }).catch((err) => {
-            
-            console.log(err)
+            Swal.fire(
+                'UPS!',
+                err.response.data.message,
+                'error'
+              )
         });
     }, [])
 

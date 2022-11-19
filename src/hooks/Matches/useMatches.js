@@ -12,6 +12,7 @@ export const    useMatches = () => {
     const createMatch = async (inputs) =>{
         await axios.post(`https://drab-puce-puffer-sari.cyclic.app/api/createMatch`, inputs, {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}}).then((res) => {
             console.log(res)
+            getMatches()
         }).catch((err) => {
             Swal.fire(
                 'UPS!',
@@ -38,6 +39,7 @@ export const    useMatches = () => {
     const putMatchFinal = async (inputs, id) => {
         await axios.put(`https://drab-puce-puffer-sari.cyclic.app/api/goals/${id}/${localStorage.getItem('Phase')}`, inputs, {headers: {Authorization: sessionStorage.getItem('USER_TOKEN')}}).then((res) => {
             console.log(res)
+            getMatches()
         }).catch((err) => {
             Swal.fire(
                 'UPS!',

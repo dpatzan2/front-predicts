@@ -32,14 +32,6 @@ export const SecondNavbarComponent = () => {
               </NavLink>
               </li>
               <li className="nav-item">
-              <NavLink
-                className={({ isActive }) =>
-                  `nav-link ${isActive ? "active" : ""}`
-                }
-                to={"/room/positions/" + localStorage.getItem('currentRoom')}
-              >
-                Positions table
-              </NavLink>
             </li>
             </ul>
           </div>
